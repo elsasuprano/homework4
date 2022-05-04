@@ -1,6 +1,9 @@
 var timerEl = document.getElementById('countdown');
-var timeLeft = 60;
 var startBtn = document.getElementById('btn-start');
+var startScreen = document.getElementById('startingContainer');
+var questionContainer = document.getElementById('questionContainer')
+var answerBtn = document.getElementsByClassName('answers')
+var timeLeft = 60;
 var quizQuestions = [
     {
         question: "What is your fav car ?", 
@@ -18,6 +21,7 @@ var quizQuestions = [
         answer : "B"
     }
 ]
+var currentQuestionIndex = 0
 // Timer that counts down from 5
 function countdown() {
 
@@ -44,19 +48,30 @@ function countdown() {
 }; 
 
 function showQandChoices(){
-    console.log(quizQuestions[0])
-    console.log(quizQuestions[0].question)
+    console.log(quizQuestions[currentQuestionIndex])
+    console.log(quizQuestions[currentQuestionIndex].question)
     //display the question on html page 
-    document.getElementById('qText').textContent = quizQuestions[0].question; 
+    document.getElementById('qText').textContent = quizQuestions[currentQuestionIndex].question; 
     //show text for the buttons 
-    document.getElementById('choice1').textContent = quizQuestions[0].choices;
+    // document.getElementById('choice1').textContent = quizQuestions[currentQuestionIndex].choices;
+    for (var i = 0; i < answerBtn.length; i++) {
+  
+    }
 }
 
 function startQuiz(){
     alert("Time begins"); 
+    startScreen.setAttribute("class", "hide")
+    questionContainer.setAttribute("class", "")
     countdown(); //start the clock 
     //show the question and choices 
     showQandChoices();
 }
 //Event Listener 
 startBtn.addEventListener('click', startQuiz); 
+for (var i = 0; i < answerBtn.length; i++) {
+  answerBtn[i].addEventListener('click', checkAnswer); 
+}
+function checkAnswer(event){
+console.log(event.target)
+}
